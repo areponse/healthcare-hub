@@ -22,6 +22,7 @@ The Healthcare Hub Console Application is a Python-based program designed to pro
 3. Get database running: Have mysql running with data from database.sql
    `database.sql`
 4. Change your connection creadentials in `main.py`
+   Replace with your use case values
    ```bash
     host="your_host",
     user="your_username",
@@ -36,10 +37,6 @@ The Healthcare Hub Console Application is a Python-based program designed to pro
     database="healthcare_hub"
    ```
 5. Run the application
-   ```bash
-   py main.py
-   ```
-6. Run the application
    ```bash
    py main.py
    ```
