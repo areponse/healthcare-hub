@@ -17,10 +17,32 @@ The Healthcare Hub Console Application is a Python-based program designed to pro
 1. Clone the repository.
 2. Install the required dependencies.
    ```bash
-   pip install -r requirements.txt
+   pip install mysql-connector-python
    ```
-3. Run the application
-   `py main.py`
+3. Get database running: Have mysql running with data from database.sql
+   `database.sql`
+4. Change your connection creadentials in `main.py`
+   ```bash
+    host="your_host",
+    user="your_username",
+    password="your_password",
+    database="your_dbname"
+   ```
+   In our case this is what we used, you may prefer that for simplicity
+   ```bash
+    host="localhost",
+    user="root",
+    password="",
+    database="healthcare_hub"
+   ```
+5. Run the application
+   ```bash
+   py main.py
+   ```
+6. Run the application
+   ```bash
+   py main.py
+   ```
 
 ## Usage
 
