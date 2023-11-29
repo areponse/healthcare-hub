@@ -43,4 +43,4 @@ The Healthcare Hub Console Application is a Python-based program designed to pro
 
 ## Usage
 
-Follow the on-screen prompts to navigate through different features of the application.
+
