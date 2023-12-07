@@ -23,19 +23,19 @@ def execute_query(query, data=None, fetch=False):
 
 # Function to get personalized health tip or quote
 def get_welcome_message():
-    return "Welcome to Healthcare Hub! Stay healthy and informed."
+    return "Welcome to Healthcare Hub! Stay healthy and informed.\n"
 
 # Function to display the main menu
 def display_menu():
-    print("\nHealthcare Hub Console Application\n\n")
+    print("\nHealthcare Hub Console Application\n")
     print("1. Disease Information")
     print("2. Symptom Exploration")
     print("3. Drug Exploration")
     print("4. Educational Flashcards")
-    print("5. Daily Well-Being Tips")
-    print("6. Random tip")
-    print("7. Exit")
-    print("\n\n")
+    print("5. Random Health Tip")
+    print("6. Posts Expoloration")
+    print("7. Share Post")
+    print("8. Exit\n")
 
 
 def get_random_health_tip():
