@@ -90,5 +90,6 @@ def search_and_filter(category, term="", by_random=False, column="name"):
         print(f"No {category}s found.")
 
     explore_next_action(category)
-
+def clear_screen():
+    os.system('cls' if os.name == 'nt' else 'clear')
             
