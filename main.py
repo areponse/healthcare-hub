@@ -56,32 +56,18 @@ def explore_next_action(category):
 
     clear_screen()
 
-    # Define other methods within the class following a similar structure
+    if choice == "0":
+        display_menu()
+    else:
+        column = "category" if category == "flashcard" else ("topic" if category == "tip" else "name")
+        search_and_filter(category, choice, not bool(choice), column)
 
-    def close_connection(self):
-        # Close the cursor and connection
-        self.cursor.close()
-        self.connection.close()
+def search_and_filter(category, term="", by_random=False, column="name"):
+    if not term and not by_random:
+        term = get_user_input(f"Enter the {category} you want to search for: ")
+
+    query = f"SELECT * FROM {category}s ORDER BY RAND() LIMIT 1" if by_random else f"SELECT * FROM {category}s WHERE {column} LIKE %s"
+    results = execute_query(query, (f'%{term}%',), fetch=True) if not by_random else execute_query(query, fetch=True)
    
-if __name__ == "__main__":
-    hub = healthcare_hub()
 
-    while True:
-        print(hub.get_welcome_message())
-        hub.display_menu()
-
-        choice = input("Enter your choice (1-8): ")
-        print("\n")
-        if choice == "1":
-            hub.get_disease_info()
-        elif choice == "2":
-            hub.explore_symptoms()
-        # Implement other functionalities in a similar manner
-
-        elif choice == "8":
-            hub.close_connection()
-            print("Exiting Healthcare Hub. Goodbye!")
-            break
-        else:
-            print("Invalid choice. Please enter a number between 1 and 8.")
             
