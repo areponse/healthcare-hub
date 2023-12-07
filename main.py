@@ -44,15 +44,17 @@ def get_random_health_tip():
     else:
         print("No health tips available at the moment.\n")
 
-    def get_disease_info(self):
-        disease_name = input("Enter the name of the disease: ")
-        query = "SELECT * FROM diseases WHERE name = %s"
-        result = self.execute_query(query, (disease_name,), fetch=True)
+   def get_user_input(prompt):
+    return input(prompt).strip()
 
-        if result:
-            print(result)
-        else:
-            print("Disease not found.")
+def explore_next_action(category):
+    print("\nNEXT ACTIONS")
+    print("0. Go to Homepage")
+    print("1. Type in a text to search again")
+    print("Press Enter to generate a random", category)
+    choice = get_user_input("\nChoose an action: ")
+
+    clear_screen()
 
     # Define other methods within the class following a similar structure
 
