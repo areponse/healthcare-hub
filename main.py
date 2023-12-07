@@ -70,5 +70,16 @@ if __name__ == "__main__":
 
         choice = input("Enter your choice (1-8): ")
         print("\n")
+        if choice == "1":
+            hub.get_disease_info()
+        elif choice == "2":
+            hub.explore_symptoms()
+        # Implement other functionalities in a similar manner
 
+        elif choice == "8":
+            hub.close_connection()
+            print("Exiting Healthcare Hub. Goodbye!")
+            break
+        else:
+            print("Invalid choice. Please enter a number between 1 and 8.")
             
