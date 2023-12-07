@@ -68,6 +68,27 @@ def search_and_filter(category, term="", by_random=False, column="name"):
 
     query = f"SELECT * FROM {category}s ORDER BY RAND() LIMIT 1" if by_random else f"SELECT * FROM {category}s WHERE {column} LIKE %s"
     results = execute_query(query, (f'%{term}%',), fetch=True) if not by_random else execute_query(query, fetch=True)
-   
+    if results:
+        for result in results:
+            # Create object based on category and call print function
+            if category == "disease":
+                disease = Disease(result)
+                disease.print()
+            elif category == "symptom":
+                symptom = Symptom(result)
+                symptom.print()
+            elif category == "drug":
+                drug = Drug(result)
+                drug.print()
+            elif category == "flashcard":
+                flashcard = FlashCard(result)
+                flashcard.print()
+            elif category == "tip":
+                tip = HealthTip(result)
+                tip.print()
+    else:
+        print(f"No {category}s found.")
+
+    explore_next_action(category)
 
             
