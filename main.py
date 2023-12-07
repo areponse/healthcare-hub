@@ -34,10 +34,9 @@ def execute_query(self, query, data=None, fetch=False):
         print("7. Share Post")
         print("8. Exit\n")
 
-def get_random_health_tip(self):
-        query = "SELECT * FROM well_being_tips ORDER BY RAND() LIMIT 1"
-        self.execute_query(query)
-        result = self.cursor.fetchone()
+def get_random_health_tip():
+    query = "SELECT * FROM tips ORDER BY RAND() LIMIT 1"
+    result = execute_query(query, fetch=True)
 
         if result:
             return f"\nHealth Tip: {result[1]}\n{result[2]}\n"
