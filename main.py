@@ -38,10 +38,11 @@ def get_random_health_tip():
     query = "SELECT * FROM tips ORDER BY RAND() LIMIT 1"
     result = execute_query(query, fetch=True)
 
-        if result:
-            return f"\nHealth Tip: {result[1]}\n{result[2]}\n"
-        else:
-            return "\nNo health tips available at the moment.\n"
+    if result:
+        tip = HealthTip(result[0])
+        tip.print()
+    else:
+        print("No health tips available at the moment.\n")
 
     def get_disease_info(self):
         disease_name = input("Enter the name of the disease: ")
