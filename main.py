@@ -1,5 +1,6 @@
 import mysql.connector
 import os
+from classes import HealthTip, Drug, Symptom, FlashCard, Disease, Post
 
 # Connect to MySQL
 connection = mysql.connector.connect(
