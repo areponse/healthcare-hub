@@ -33,3 +33,30 @@ def execute_query(self, query, data=None, fetch=False):
         print("6. Posts Exploration")
         print("7. Share Post")
         print("8. Exit\n")
+
+def get_random_health_tip(self):
+        query = "SELECT * FROM well_being_tips ORDER BY RAND() LIMIT 1"
+        self.execute_query(query)
+        result = self.cursor.fetchone()
+
+        if result:
+            return f"\nHealth Tip: {result[1]}\n{result[2]}\n"
+        else:
+            return "\nNo health tips available at the moment.\n"
+
+    def get_disease_info(self):
+        disease_name = input("Enter the name of the disease: ")
+        query = "SELECT * FROM diseases WHERE name = %s"
+        result = self.execute_query(query, (disease_name,), fetch=True)
+
+        if result:
+            print(result)
+        else:
+            print("Disease not found.")
+
+    # Define other methods within the class following a similar structure
+
+    def close_connection(self):
+        # Close the cursor and connection
+        self.cursor.close()
+        self.connection.close()
