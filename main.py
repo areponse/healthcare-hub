@@ -60,3 +60,15 @@ def get_random_health_tip(self):
         # Close the cursor and connection
         self.cursor.close()
         self.connection.close()
+   
+if __name__ == "__main__":
+    hub = healthcare_hub()
+
+    while True:
+        print(hub.get_welcome_message())
+        hub.display_menu()
+
+        choice = input("Enter your choice (1-8): ")
+        print("\n")
+
+            
