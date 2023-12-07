@@ -126,7 +126,8 @@ INSERT INTO `drugs` (`id`, `name`, `uses`, `side_effects`) VALUES
 (38, "Furosemide", "Diuretic", "Dehydration, low potassium"),
 (39, "Oxycodone", "Pain relief", "Nausea, constipation")
 (40, "Fervex", "reduction of fever, pain relief and symptomatic treatment of rhinitis in adults")
-(41, "amoxicillin", "to treat bacterial infections, such as chest infections (including pneumonia) and dental abscesses");
+(41, "amoxicillin", "to treat bacterial infections, such as chest infections (including pneumonia) and dental abscesses")
+(42, "paracetamol", " to treat mild to moderate pain", " treat fever (high temperature)";
 
 -- --------------------------------------------------------
 
