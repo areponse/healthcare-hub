@@ -11,6 +11,7 @@ The Healthcare Hub Console Application is a Python-based program designed to pro
 - **Drug Exploration:** Access comprehensive information on drugs, including uses and side effects.
 - **Educational Flashcards:** Generate flashcards with questions related to medical knowledge.
 - **Daily Well-Being Tips:** Get daily tips on nutrition, fitness, and mental well-being.
+- **Health related posts:** Share your health-related insights with others and view theirs.
 
 ## Getting Started
 
