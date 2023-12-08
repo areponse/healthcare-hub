@@ -92,4 +92,128 @@ def search_and_filter(category, term="", by_random=False, column="name"):
     explore_next_action(category)
 def clear_screen():
     os.system('cls' if os.name == 'nt' else 'clear')
-            
+# Function to share health information
+def share_post():
+    clear_screen()
+    print("\nShare Health Information\n\n")
+    category = get_user_input("Enter the category: ")
+    title = get_user_input("Enter the title: ")
+    description = get_user_input("Enter the description: ")
+    posted_by = get_user_input("Enter your name: ")
+
+    # Check if any input is empty
+    if not all([category, title, description, posted_by]):
+        print("\nError: All fields must be filled. Please try again.\n")
+    else:
+
+    # Insert data into the shared_health_info table
+        query = "INSERT INTO posts (category, title, description, posted_by) VALUES (%s, %s, %s, %s)"
+        data = (category, title, description, posted_by)
+        execute_query(query, data)
+
+        print("\n\nHealth information shared successfully!")
+
+    print("\n\nNEXT ACTION")
+    print("1. Share another post")
+    print("Or any key to go to homepage")
+    choice = get_user_input(f"Enter your choice ")
+
+    clear_screen()
+
+    if (choice=="1"):
+        share_post()
+    else:
+        display_menu()
+
+
+def single_post(id=""):
+    clear_screen()
+    query =  f"SELECT * FROM posts ORDER BY RAND() LIMIT 1" if id=="" else f"SELECT * FROM posts WHERE id = %s"
+    results = execute_query(query, (f"{id}",), fetch=True) if id!="" else execute_query(query, fetch=True)
+    if results:
+        for result in results:
+            post = Post(result)
+            post.print()
+    else:
+        print(f"No post found.")
+    posts_next_actions()
+
+
+def posts_next_actions():
+    print(" ")
+    print(" ")
+    print("NEXT ACTION")
+    print("Enter id to read more")
+    print("Or keyword to search")
+    print("Or press enter key to go home\n")
+
+    choice = get_user_input('Enter yout choice: ')
+
+    if choice=="":
+        display_menu()
+    elif choice.isdigit():
+        single_post(choice)
+    else:
+        posts(choice)
+    
+
+
+
+def posts(term=""):
+    clear_screen()
+    query = f"SELECT * FROM posts" if term == "" else f"SELECT * FROM posts WHERE category LIKE %s OR title LIKE %s"
+    results = execute_query(query, (f'%{term}%',f'%{term}%'), fetch=True) if term != "" else execute_query(query, fetch=True)
+
+    if results:
+        for result in results:
+            print(f"|{result[0]}. {result[1]}")
+            print(f"|{result[2]}")
+            print(" ")
+
+
+
+
+    else:
+        print(f"No posts found.")
+    
+    posts_next_actions()
+
+
+    
+
+
+
+# Main program loop
+while True:
+    print(get_welcome_message())
+    display_menu()
+
+    choice = get_user_input("Enter your choice (1-8): ")
+    print("\n")
+
+    if choice == "8":
+        print("Exiting Healthcare Hub. Goodbye!")
+        break
+    elif choice == "7":
+        share_post()
+    elif choice == "6":
+        posts()
+
+    else:
+        clear_screen()
+        column = "category" if choice == "4" else ("topic" if choice == "5" else "name")
+
+        if choice < "6" and len(choice) > 0:
+            search_and_filter(category="disease" if choice == "1" else
+                    "symptom" if choice == "2" else
+                    "drug" if choice == "3" else
+                    "flashcard" if choice == "4" else
+                    "tip" if choice == "5" else "",
+            by_random=(choice == "5"), column=column
+        )
+
+    clear_screen()
+
+# Close the cursor and connection
+cursor.close()
+connection.close()            
