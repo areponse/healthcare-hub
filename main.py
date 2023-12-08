@@ -1,38 +1,41 @@
 import mysql.connector
 import os
+from classes import HealthTip, Drug, Symptom, FlashCard, Disease, Post
 
-class healthcare_hub:
-    def __init__(self):
-        # Connect to MySQL
-        self.connection = mysql.connector.connect(
-            host="localhost",
-            user="root",
-            password="",
-            database="healthcare_hub"
-        )
-        # Create a cursor object
-        self.cursor = self.connection.cursor()
+# Connect to MySQL
+connection = mysql.connector.connect(
+    host="localhost",
+    user="root",
+    password="",
+    database="healthcare_hub"
+)
 
-def execute_query(self, query, data=None, fetch=False):
-        self.cursor.execute(query, data)
-        if fetch:
-            return self.cursor.fetchall()
-        else:
-            self.connection.commit()
+# Create a cursor object
+cursor = connection.cursor()
 
-    def get_welcome_message(self):
-        return "Welcome to Healthcare Hub! Stay healthy and informed.\n"
+# Function to execute MySQL queries
+def execute_query(query, data=None, fetch=False):
+    cursor.execute(query, data)
+    if fetch:
+        return cursor.fetchall()
+    else:
+        connection.commit()
 
-    def display_menu(self):
-        print("\nHealthcare Hub Console Application\n")
-        print("1. Disease Information")
-        print("2. Symptom Exploration")
-        print("3. Drug Exploration")
-        print("4. Educational Flashcards")
-        print("5. Random Health Tip")
-        print("6. Posts Exploration")
-        print("7. Share Post")
-        print("8. Exit\n")
+# Function to get personalized health tip or quote
+def get_welcome_message():
+    return "Welcome to Healthcare Hub! Stay healthy and informed.\n"
+
+# Function to display the main menu
+def display_menu():
+    print("\nHealthcare Hub Console Application\n")
+    print("1. Disease Information")
+    print("2. Symptom Exploration")
+    print("3. Drug Exploration")
+    print("4. Educational Flashcards")
+    print("5. Random Health Tip")
+    print("6. Posts Expoloration")
+    print("7. Share Post")
+    print("8. Exit\n")
 
 def get_random_health_tip():
     query = "SELECT * FROM tips ORDER BY RAND() LIMIT 1"
@@ -44,7 +47,7 @@ def get_random_health_tip():
     else:
         print("No health tips available at the moment.\n")
 
-   def get_user_input(prompt):
+def get_user_input(prompt):
     return input(prompt).strip()
 
 def explore_next_action(category):
@@ -68,6 +71,7 @@ def search_and_filter(category, term="", by_random=False, column="name"):
 
     query = f"SELECT * FROM {category}s ORDER BY RAND() LIMIT 1" if by_random else f"SELECT * FROM {category}s WHERE {column} LIKE %s"
     results = execute_query(query, (f'%{term}%',), fetch=True) if not by_random else execute_query(query, fetch=True)
+
     if results:
         for result in results:
             # Create object based on category and call print function
@@ -90,8 +94,10 @@ def search_and_filter(category, term="", by_random=False, column="name"):
         print(f"No {category}s found.")
 
     explore_next_action(category)
+
 def clear_screen():
     os.system('cls' if os.name == 'nt' else 'clear')
+
 # Function to share health information
 def share_post():
     clear_screen()
@@ -216,4 +222,4 @@ while True:
 
 # Close the cursor and connection
 cursor.close()
-connection.close()            
+connection.close()
