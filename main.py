@@ -31,3 +31,7 @@ while True:
 
     choice = input("Enter your choice (1-6): ")
     print("\n")
+     if choice == "1":
+        get_disease_info()
+    elif choice == "2":
+        explore_symptoms()
