@@ -35,5 +35,3 @@ while True:
         get_disease_info()
     elif choice == "2":
         explore_symptoms()
-         elif choice == "2":
-        explore_symptoms()
